@@ -1,0 +1,152 @@
+<html>
+	<head> 
+    
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- First include jquery js -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>-->
+
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+
+     
+        <script> 
+        $(function(){
+                $("#header").load("/website/_includes/header.html"); 
+                $("#footer").load("website/_includes/footer.html"); 
+        });
+        </script>   
+     
+    </head>
+
+		<body>
+                
+        <div id="header"></div>
+        
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#">Word Embeddings</a></li>
+          <li><a data-target="#nlm" data-toggle="collapse">Neural Language Modelling</a></li>
+          <li><a data-target="#tl" data-toggle="collapse">Transfer Learning</a></li>
+          <li><a data-target="#rbnlm" data-toggle="collapse">Reward-Based NLL</a></li>
+        </ul>
+        
+        </div>
+        
+        <br>
+        
+        
+        
+         <div class="row">
+          <div class="col-xs-12 col-sm-6">
+          
+            <div class="panel panel-primary">
+              <div class="panel-heading">Meta-Embeddings (Newest Research)</div>
+              <div class="panel-body">
+                 <br/>
+                  
+                 <p>
+                  Meta Embeddings involves encoding a set of character, sub-word or word vectors to take advantage of the openly 
+                       available pretrained embeddings, that may be computationally costly or time consuming for an NLP practitioner to compute.
+                       This is different to most ensemble methods that usually cast a vote on the decoder of a supervised problem since the 
+                       ensemble set is instead defined for the input representations.
+                 </p> 
+                 <br/>
+                 <p>  This can be achieved by simple dimenionality reduction techniques prior to any general NLP task in which they may be used, or they
+                  can be trained end-to-end for a specific supervised task. In this work we proposed to improve word embeddings by simultaneously learning to 
+                  reconstruct an ensemble of pretrained word embeddings with supervision from various labeled word similarity datasets. This involved reconstructing 
+                  word meta-embeddings while simultaneously using a Siamese Network to also learn word similarity where both processes share a hidden layer. 
+                  Experiments were carried out on 6 word similarity datasets and 3 analogy datasets. We found that performance was improved for all word similarity 
+                  datasets when compared to unsupervised learning methods with a mean increase of 11.33 in the Spearman Correlation coefficient. Moreover, 4 of 6 of
+                  word similarity datasets from our approach showed best performance when using a cosine loss for reconstruction and Brier's loss for word similarity.          
+                 </p>
+                 
+                 <br/>
+
+                 For more info on meta-embeddings check out our <a href="https://metaembed.github.io/"> meta-embedding</a> github page.
+
+                </div>
+            </div>
+
+            
+            <div class="panel panel-default" id="nlm">
+              <div class="panel-heading">Curriculum-Based Neighborhood Sampling for Sequence Prediction</div>
+                  <p> 
+                    The task of multi-step ahead prediction in language models is challenging considering the discrepancy between training and testing. 
+                    At test time, a language model is required to make predictions given past predictions as input, instead of the past targets that are provided during training.
+                    This difference, known as exposure bias, can lead to the compounding of errors along a generated sequence at test time.
+                   </p>
+                   <br/>  
+                  <p>
+                    In order to improve generalization in neural language models and address compounding errors, we proposed a curriculum learning based method that gradually
+                    changes an initially deterministic teacher policy to a gradually more stochastic policy, which we refer to as Nearest-Neighbor Replacement Sampling.
+                    A chosen input at a given timestep is replaced with a sampled nearest neighbor of the past target with a truncated probability proportional to the cosine 
+                    similarity between the original word and its top $k$ most similar words. This allows the teacher to explore alternatives when the teacher provides a sub-optimal
+                    policy or when the initial policy is difficult for the learner to model. The proposed strategy is straightforward, online and requires little additional memory
+                    requirements. We report our main findings on two language modelling benchmarks and find that the proposed approach performs particularly well when used
+                    in conjunction with scheduled sampling, that too attempts to mitigate compounding errors in language models. 
+                  </p> 
+              <div class="panel-body">
+               </div>
+            </div>
+
+          </div>
+
+          <div class="col-xs-12 col-sm-6">
+            <div class="panel panel-default"  id="tl">
+              <div class="panel-heading">Dropping Networks for Transfer Learning</div>
+              <div class="panel-body">               
+                  
+                  <p>  
+                  Many tasks in natural language understanding require learning relationships between two sequences for various tasks such as natural language inference, paraphrasing 
+                  and entailment. These aforementioned tasks are similar in nature, yet they are often modeled individually. Knowledge transfer can be effective for closely related tasks.
+                  However, transferring all knowledge, some of which irrelevant for a target task, can lead to sub-optimal results due to negative transfer. Hence, this paper focuses
+                  on the transferability of both instances and parameters across natural language understanding tasks by proposing an ensemble-based transfer learning method. 
+                  The primary contribution of this work was the combination of both Dropout and Bagging for improved transferability in neural networks, referred 
+                  to as Dropping.
+                  <br/>
+                   We presented a straightforward yet novel method for incorporating source Dropping Networks to a target task for few-shot learning that mitigates negative transfer. 
+                    This was achieved by using a parameterized decaying factor chosen according to the slope changes of a smoothed spline error curve at sub-intervals during training.
+                  <br/>
+                   We compared the proposed approach against hard parameter sharing and soft parameter sharing transfer methods in the few-shot learning case.
+                     We also compared against models that are fully trained on the target task in the standard supervised learning setup. The aforementioned adjustment led to improved
+                     transfer learning performance over the aforementioned alternatives and comparable results to the current state of the art by only using a fraction of the sentence pairs
+                     from the target task.
+                  </p>
+                </div>
+            </div>
+
+            <div class="panel panel-default" id="rbnlm">
+              <div class="panel-heading">Goal-Orientated Natural Language in a Continuous Action Space</div>
+              <div class="panel-body">
+                   <p>
+                    The standard setup for natural language tasks is to represent each word in a vocabulary with a lower dimensional embedding in continuous space.
+                    However, in sequential problems we can consider the natural language space to be made up of two separated vector spaces, a state space and an
+                    action space. In doing so, we can treat different words to be both states and action words depending on the context. The task is then to learn a language
+                    model that can first generate a state and given this generated state, predict a single action to the next state. However, doing so can be quite difficult 
+                    to do as the sequence length grows. Hence, this paper proposes to generate a flow graph from a set of important concepts and relationships between them 
+                    using a deep policy gradient network.
+                  </p>
+              
+              </div>
+              
+            </div>
+
+        </div>
+            
+    </body>
+
+ </html>
+
